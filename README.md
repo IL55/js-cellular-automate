@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/IL55/js-cellular-automate/tree/master.svg?style=svg)](https://circleci.com/gh/IL55/js-cellular-automate/tree/master)
+
 # js-cellular-automate
 
 This project was inspired by book from Stephen Wolfram, [A new kind of science](http://www.wolframscience.com/nksonline/toc.html).
@@ -30,6 +32,14 @@ Run `grunt build` for building distributive for production.
 
 and `grunt serve` for developer preview.
 
-## Testing
+### Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+### Continues integration
+
+we use [CircleCI](https://circleci.com/gh/IL55/js-cellular-automate)
+inspired by [javascripting.com blog post](https://blog.javascripting.com/2014/12/05/continuous-deployment-with-github-circleci-heroku/)
+
+Last master branch build deploys to Heroku:
+http://js-cellular-automate.herokuapp.com
