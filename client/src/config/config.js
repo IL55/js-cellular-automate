@@ -2,7 +2,7 @@
  * Constants
  */
 
-var keyMirror = require('react/lib/keymirror');
+var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
   RULE_CHANGED: null,
