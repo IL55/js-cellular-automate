@@ -32,5 +32,5 @@ deployment:
   prod:
     branch: master
     commands:
-      - git push -f git@heroku.com:js-cellular-automata.git ${CIRCLE_BRANCH}:master
+      - git push -f git@heroku.com:js-cellular-automate.git ${CIRCLE_BRANCH}:master
 
