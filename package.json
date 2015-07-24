@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
+  "name": "js-cellular-automate",
   "version": "0.1.2",
-  "description": "A sample Node.js app using Express 4",
+  "description": "A simple Node.js server for host cellular-automate react client",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/IL55/js-cellular-automate"
   },
   "keywords": [
     "node",
-    "heroku",
-    "express"
+    "cellular",
+    "automate"
   ],
   "license": "MIT"
 }

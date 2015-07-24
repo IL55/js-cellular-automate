@@ -1,12 +1,29 @@
-# js-cellular-automata
+# js-cellular-automate
 
-Some of simple cellular automata, with using React.js
+Some of simple cellular automates, with using React.js and svg.
+You can change automate rules and observe the result.
 
-This project is generated with [yo angular generator](https://github.com/newtriks/generator-react-webpack)
+http://js-cellular-automate.herokuapp.com
+
+This project is generated with [yo react-webpack generator ](https://github.com/newtriks/generator-react-webpack)
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+### server (just for hosting react client)
+We use simple node.js server, for hosting in production,
+but may be in future we move some (slowly) functionality to server.
+
+`npm install`
+
+`node index.js`
+
+### react.js client
+
+`cd client`
+
+Run `grunt build` for building distributive for production.
+
+and `grunt serve` for developer preview.
 
 ## Testing
 
