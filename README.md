@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/IL55/js-cellular-automate/tree/master.svg?style=svg)](https://circleci.com/gh/IL55/js-cellular-automate/tree/master)
+[![Circle CI](https://circleci.com/gh/IL55/js-cellular-automate/tree/master.svg?style=shield)](https://circleci.com/gh/IL55/js-cellular-automate/tree/master)
 
 # js-cellular-automate
 
