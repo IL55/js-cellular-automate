@@ -3,7 +3,6 @@
 var React = require('react/addons');
 var AutomatRuleView = require('./AutomatRuleView');
 var NumberOfSteps = require('./NumberOfSteps');
-var _ = require('lodash');
 var Table = require('react-bootstrap/lib/Table');
 var InitialLayerSize = require('./InitialLayerSize');
 
@@ -33,7 +32,7 @@ var AutomatView = React.createClass({
           <Table>
             <tr>
             {
-              _.map(this.props.automate.rules, function(ruleResult, ruleName) {
+              this.props.automate.rules.map(function(ruleResult, ruleName) {
                 return <AutomatRuleView ruleResult={ruleResult} ruleName={ruleName} key={ruleName}/>;
               })
             }
