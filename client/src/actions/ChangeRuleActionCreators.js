@@ -6,7 +6,7 @@ var Config = require('../config/config');
 var ChangeRuleActionCreators = {
   changeRule: function(ruleName) {
     App3AppDispatcher.handleViewAction({
-      actionType: Config.RULE_CHANGED,
+      actionType: Config.actions.RULE_CHANGED,
       ruleName: ruleName
     });
   }

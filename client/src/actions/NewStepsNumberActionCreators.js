@@ -6,7 +6,7 @@ var Config = require('../config/config');
 var NewStepsNumberActionCreators = {
   newStepsNumber: function(numberOfSteps) {
     App3AppDispatcher.handleViewAction({
-      actionType: Config.NEW_STEPS_NUMBER,
+      actionType: Config.actions.NEW_STEPS_NUMBER,
       numberOfSteps: numberOfSteps
     });
   }

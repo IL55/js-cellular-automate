@@ -23,9 +23,15 @@ automate.rules = {
 };
 
 automate.ruleSize = 3;
+automate.initialLayerSize = 100;
 
-automate.initialLayer = _.fill(Array(100), '1');
-automate.initialLayer[automate.initialLayer.length / 2] = '0';
+
+var generateInitialLayers = function(initialLayerSize) {
+  var initialLayer = _.fill(Array(initialLayerSize), '1');
+  initialLayer[initialLayer.length / 2] = '0';
+
+  return initialLayer;
+};
 
 
 var getNextResult = function(prevResult, rules, ruleSize) {
@@ -63,6 +69,7 @@ automate.numberOfSteps = 10;
 
 
 var updateAutomateResult = function() {
+  automate.initialLayer = generateInitialLayers(automate.initialLayerSize);
   automate.automateResult = generateNLayers(automate, automate.initialLayer, getNextResult, automate.numberOfSteps);
 };
 
@@ -121,7 +128,7 @@ MainStoreStore.dispatchToken = App3AppDispatcher.register(function(payload) {
     var action = payload.action;
 
     switch(action.actionType) {
-      case Config.RULE_CHANGED:
+      case Config.actions.RULE_CHANGED:
         // revert rule
         var res;
         if (automate.rules[payload.action.ruleName] === '0') {
@@ -134,8 +141,15 @@ MainStoreStore.dispatchToken = App3AppDispatcher.register(function(payload) {
 
         MainStoreStore.emitChange();
         break;
-      case Config.NEW_STEPS_NUMBER:
+
+      case Config.actions.NEW_STEPS_NUMBER:
         partialUpdateAutomateResult(payload.action.numberOfSteps);
+        MainStoreStore.emitChange();
+        break;
+
+      case Config.actions.INITIAL_LAYER_SIZE_CHANGED:
+        automate.initialLayerSize = payload.action.initialLayerSize;
+        updateAutomateResult();
         MainStoreStore.emitChange();
         break;
     }
