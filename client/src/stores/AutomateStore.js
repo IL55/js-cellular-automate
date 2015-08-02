@@ -6,7 +6,7 @@ var AutomateActions = require('../actions/AutomateActions');
 
 var automate = require('./AutomateModel');
 
-var MainStoreStore = Reflux.createStore({
+var AutomateStore = Reflux.createStore({
   /**
    * initial setup
    */
@@ -16,6 +16,8 @@ var MainStoreStore = Reflux.createStore({
     this.listenTo(AutomateActions.changeInitialLayer, this.changeInitialLayer);
     this.listenTo(AutomateActions.changeRule, this.changeRule);
     this.listenTo(AutomateActions.newStepsNumber, this.newStepsNumber);
+    this.listenTo(AutomateActions.nextPage, this.nextPage);
+    this.listenTo(AutomateActions.prevPage, this.prevPage);
   },
   /**
    * Get the entire collection of TODOs.
@@ -26,7 +28,8 @@ var MainStoreStore = Reflux.createStore({
   },
 
   newStepsNumber: function(numberOfSteps) {
-    automate.partialUpdateAutomateResult(numberOfSteps);
+    automate.numberOfSteps = numberOfSteps;
+    automate.updateAutomateResult();
     // Pass on to listeners
     this.trigger(this.automate);
   },
@@ -43,7 +46,24 @@ var MainStoreStore = Reflux.createStore({
     automate.updateAutomateResult();
     // Pass on to listeners
     this.trigger(this.automate);
+  },
+
+  prevPage: function() {
+    if (automate.pageNumber <= 1) {
+      return;
+    }
+    automate.pageNumber = automate.pageNumber - 1;
+    automate.updateAutomateResult();
+    // Pass on to listeners
+    this.trigger(this.automate);
+  },
+
+  nextPage: function() {
+    automate.pageNumber = automate.pageNumber + 1;
+    automate.updateAutomateResult();
+    // Pass on to listeners
+    this.trigger(this.automate);
   }
 });
 
-module.exports = MainStoreStore;
+module.exports = AutomateStore;

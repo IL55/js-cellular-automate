@@ -9,7 +9,7 @@ require('../styles/main.css');
 
 var SvgComponent = require('./SvgComponent');
 var AutomatView = require('./AutomatView');
-var MainStoreStore = require('../stores/MainStoreStore');
+var AutomateStore = require('../stores/AutomateStore');
 
 
 var Grid = require('react-bootstrap/lib/Grid');
@@ -19,7 +19,7 @@ var Col = require('react-bootstrap/lib/Col');
 
 function getAutomateState() {
   return {
-    automate: MainStoreStore.getAutomate()
+    automate: AutomateStore.getAutomate()
   };
 }
 
@@ -30,7 +30,7 @@ var App3App = React.createClass({
   },
 
   componentDidMount: function() {
-    this.unsubscribe = MainStoreStore.listen(this._onChange);
+    this.unsubscribe = AutomateStore.listen(this._onChange);
   },
 
   componentWillUnmount: function() {

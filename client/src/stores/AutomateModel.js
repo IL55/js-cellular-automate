@@ -37,10 +37,16 @@ automate.ruleSize = 3;
 automate.initialLayerSize = 100;
 
 /**
- * number of automate steps
+ * number of automate steps (page size)
  * @type {Number}
  */
 automate.numberOfSteps = 10;
+
+/**
+ * page number (for show)
+ * @type {Number}
+ */
+automate.pageNumber = 1;
 
 /**
  * generate initial layer (with one black dot in the center)
@@ -96,35 +102,27 @@ automate.generateNLayers = function(automateSettings, initialLayer, getNextLayer
 };
 
 /**
+ * get concrete page from cached
+ * @param  {Array} cached - previously calculated result
+ * @param  {Number} pageSize - size of page
+ * @param  {Number} pageNumber - number of page (starts from 1)
+ */
+automate.getPage = function(cached, pageSize, pageNumber) {
+  var start = pageSize * (pageNumber - 1);
+  var end = pageSize * pageNumber;
+  var res = cached.slice(start, end);
+  return res;
+};
+
+/**
  * update automate output
  * generate ALL layers according with user settings
  */
 automate.updateAutomateResult = function() {
   automate.initialLayer = automate.generateInitialLayers(automate.initialLayerSize);
-  automate.automateResult = automate.generateNLayers(automate, automate.initialLayer, automate.getNextResult, automate.numberOfSteps);
-};
+  automate.automateResultCached = automate.generateNLayers(automate, automate.initialLayer, automate.getNextResult, automate.numberOfSteps * automate.pageNumber);
 
-/**
- * update automate output
- * generate only last N layers
- */
-automate.partialUpdateAutomateResult = function(numberOfSteps) {
-  if (numberOfSteps <= 0) {
-    automate.numberOfSteps = 1;
-    automate.automateResult = [automate.initialLayer];
-    return;
-  }
-
-  if (automate.numberOfSteps < numberOfSteps) {
-    // calculate new steps
-    var lastLayer = automate.automateResult.pop();
-    var newResult = automate.generateNLayers(automate, lastLayer, automate.getNextResult, numberOfSteps - automate.numberOfSteps);
-    automate.automateResult = automate.automateResult.concat(newResult);
-  } else {
-    // remove
-    automate.automateResult = _.slice(automate.automateResult, 0, numberOfSteps);
-  }
-  automate.numberOfSteps = numberOfSteps;
+  automate.automateResult = automate.getPage(automate.automateResultCached, automate.numberOfSteps, automate.pageNumber);
 };
 
 /**

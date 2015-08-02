@@ -5,6 +5,8 @@ var Reflux = require('reflux');
 var AutomateActions = Reflux.createActions([
   'changeInitialLayer',
   'changeRule',
-  'newStepsNumber'
+  'newStepsNumber',
+  'nextPage',
+  'prevPage'
 ]);
 module.exports = AutomateActions;

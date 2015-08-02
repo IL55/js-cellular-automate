@@ -13,7 +13,7 @@ var NumberOfSteps = React.createClass({
   render: function () {
     return (
         <span className="NumberOfSteps">
-          Steps:<input
+          Page size:<input
                   type="number"
                   value={this.props.numberOfSteps}
                   onChange={this.handleChange} />
