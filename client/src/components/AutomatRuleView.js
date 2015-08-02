@@ -2,13 +2,13 @@
 
 var React = require('react/addons');
 
-var ChangeRuleActionCreators = require('../actions/ChangeRuleActionCreators');
+var AutomateActions = require('../actions/AutomateActions');
 
 require('styles/AutomatRuleView.less');
 
 var AutomatRuleView = React.createClass({
   onMyClick: function() {
-    ChangeRuleActionCreators.changeRule(this.props.ruleName);
+    AutomateActions.changeRule(this.props.ruleName);
   },
 
   render: function () {

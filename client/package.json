@@ -12,7 +12,6 @@
   "dependencies": {
     "bootstrap": "^3.3.5",
     "events": "^1.0.2",
-    "flux": "^2.0.1",
     "immutable": "^3.7.4",
     "lodash": "^3.10.0",
     "normalize.css": "~3.0.3",
@@ -20,7 +19,8 @@
     "react": "0.13.x",
     "react-bootstrap": "^0.24.0",
     "react-router": "0.13.x",
-    "url-loader": "^0.5.6"
+    "url-loader": "^0.5.6",
+    "reflux": "^0.2.7"
   },
   "devDependencies": {
     "babel": "^5.0.0",

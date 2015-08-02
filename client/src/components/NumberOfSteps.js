@@ -1,13 +1,13 @@
 'use strict';
 
 var React = require('react/addons');
-var NewStepsNumberActionCreators = require('../actions/NewStepsNumberActionCreators');
+var AutomateActions = require('../actions/AutomateActions');
 
 require('styles/NumberOfSteps.less');
 
 var NumberOfSteps = React.createClass({
   handleChange: function(event) {
-    NewStepsNumberActionCreators.newStepsNumber(event.target.value);
+    AutomateActions.newStepsNumber(event.target.value);
   },
 
   render: function () {

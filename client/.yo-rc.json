@@ -1,7 +1,7 @@
 {
   "generator-react-webpack": {
     "app-name": "app3",
-    "architecture": "flux",
+    "architecture": "reflux",
     "styles-language": "less",
     "component-suffix": "js"
   }

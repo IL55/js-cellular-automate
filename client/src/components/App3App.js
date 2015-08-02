@@ -2,15 +2,15 @@
 
 var React = require('react/addons');
 
-var SvgComponent = require('./SvgComponent');
-var AutomatView = require('./AutomatView');
-
-var MainStoreStore = require('../stores/MainStoreStore');
-
 // CSS
 require('bootstrap/dist/css/bootstrap.min.css');
 require('normalize.css');
 require('../styles/main.css');
+
+var SvgComponent = require('./SvgComponent');
+var AutomatView = require('./AutomatView');
+var MainStoreStore = require('../stores/MainStoreStore');
+
 
 var Grid = require('react-bootstrap/lib/Grid');
 var Row = require('react-bootstrap/lib/Row');
@@ -30,19 +30,24 @@ var App3App = React.createClass({
   },
 
   componentDidMount: function() {
-    MainStoreStore.addChangeListener(this._onChange);
+    this.unsubscribe = MainStoreStore.listen(this._onChange);
   },
 
   componentWillUnmount: function() {
-    MainStoreStore.removeChangeListener(this._onChange);
+    this.unsubscribe();
   },
 
   render: function() {
+    var automateResult = [];
+    if (this.state.automate &&
+        this.state.automate.automateResult) {
+      automateResult = this.state.automate.automateResult;
+    }
     return (
       <Grid>
         <Row className='show-grid'>
           <Col xs={12} md={8}>
-            <SvgComponent size="1200" automateResult={this.state.automate.automateResult}>
+            <SvgComponent size="1200" automateResult={automateResult}>
             </SvgComponent>
           </Col>
           <Col xs={6} md={4}>
