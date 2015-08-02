@@ -12,13 +12,30 @@ var AutomatRuleView = React.createClass({
   },
 
   render: function () {
+    var rule = this.props.ruleName.split('');
+    var ruleItems = rule.map(function(ruleItem, i) {
+      if (ruleItem === '0') {
+        return <div className="black-rect-div" key={i}></div>;
+      } else {
+        return <div className="white-rect-div" key={i}></div>;
+      }
+    });
+
+    var ruleResult;
+    if (this.props.ruleResult === '0') {
+      ruleResult = <div className="black-rect-div"></div>;
+    } else {
+      ruleResult = <div className="white-rect-div"></div>;
+    }
+
+
     return (
-        <td onClick={this.onMyClick} className="AutomatRuleView">
-          <div>
-            {this.props.ruleName}
+        <td className="AutomatRuleView">
+          <div className="text-nowrap">
+              {ruleItems}
           </div>
-          <div>
-            {this.props.ruleResult}
+          <div className="clickable" onClick={this.onMyClick}>
+            {ruleResult}
           </div>
         </td>
       );

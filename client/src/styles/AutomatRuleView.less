@@ -1,5 +1,38 @@
 .AutomatRuleView {
   text-align: center;
   vertical-align: middle;
-  cursor: pointer;
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .black-rect-div {
+    border: solid 1px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    width: 20px;
+    height: 20px;
+    color: black;
+    background: black;
+    position: relative;
+    display: inline-block;
+    border-color: white;
+  }
+
+  .white-rect-div {
+    border: solid 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    width: 20px;
+    height: 20px;
+    color: white;
+    background: white;
+    border-color: black;
+    position: relative;
+    display: inline-block;
+  }
 }
