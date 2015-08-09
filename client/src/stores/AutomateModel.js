@@ -13,16 +13,44 @@ var automate = {};
  * list of rules (immutable structure)
  * @type {Number}
  */
-automate.rules = Immutable.Map({
-  '000': '0',
-  '001': '1',
-  '010': '1',
-  '011': '0',
-  '100': '0',
-  '101': '1',
-  '110': '0',
-  '111': '1'
-});
+automate.rules = Immutable.fromJS([
+  {
+    id: '000',
+    result: '0'
+  },
+  {
+    id: '001',
+    result: '1'
+  },
+  {
+    id: '010',
+    result: '1'
+  },
+  {
+    id: '011',
+    result: '0'
+  },
+  {
+    id: '100',
+    result: '0'
+  },
+  {
+    id: '101',
+    result: '0'
+  },
+  {
+    id: '101',
+    result: '1'
+  },
+  {
+    id: '110',
+    result: '0'
+  },
+  {
+    id: '111',
+    result: '1'
+  }
+]);
 
 /**
  * size of rule
@@ -73,7 +101,11 @@ automate.getNextResult = function(prevResult, rules, ruleSize) {
   for (var i = 0; i <= prevResult.length - ruleSize; i++) {
     // get first ruleSize
     var pattern = _.slice(prevResult, i, i + ruleSize).join('');
-    result.push(rules.get(pattern));
+
+    var rule = rules.find(function(ruleIt) {
+      return (ruleIt.get('id') === pattern);
+    });
+    result.push(rule.get('result'));
   }
 
   result = result.concat(_.slice(prevResult, prevResult.length - borderSize, prevResult.length));
@@ -132,13 +164,20 @@ automate.updateAutomateResult = function() {
 automate.changeRule = function(ruleName) {
   // invert rule
   var res;
-  if (automate.rules.get(ruleName) === '0') {
+  var ruleIndex = rules.ruleIndex(function(ruleIt) {
+    return ruleIt.get('id') === ruleName;
+  });
+
+  var rule = rules.get(ruleIndex);
+  if (rule.get('result') === '0') {
     res = '1';
   } else {
     res = '0';
   }
+
   // it is immutable structure
-  automate.rules = automate.rules.set(ruleName, res);
+  rule = rule.set('result', res);
+  automate.rules = automate.rules.set(ruleIndex, rule);
 };
 
 // calculate initial automate output

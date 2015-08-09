@@ -18,6 +18,7 @@
     "no-extra-semi": 1,
     "no-underscore-dangle": false,
     "no-console": false,
-    "new-cap": false
+    "new-cap": false,
+    "no-loop-func": false
   }
 }

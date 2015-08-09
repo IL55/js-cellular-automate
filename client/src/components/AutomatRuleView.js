@@ -12,9 +12,9 @@ var AutomatRuleView = React.createClass({
   },
 
   render: function () {
-    var rule = this.props.ruleName.split('');
-    var ruleItems = rule.map(function(ruleItem, i) {
-      if (ruleItem === '0') {
+    var ruleDigits = this.props.rule.get('id').split('');
+    var ruleItems = ruleDigits.map(function(ruleDigit, i) {
+      if (ruleDigit === '0') {
         return <div className="black-rect-div" key={i}></div>;
       } else {
         return <div className="white-rect-div" key={i}></div>;
@@ -22,7 +22,7 @@ var AutomatRuleView = React.createClass({
     });
 
     var ruleResult;
-    if (this.props.ruleResult === '0') {
+    if (this.props.rule.get('result') === '0') {
       ruleResult = <div className="black-rect-div"></div>;
     } else {
       ruleResult = <div className="white-rect-div"></div>;

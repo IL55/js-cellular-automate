@@ -39,8 +39,8 @@ var AutomatView = React.createClass({
             <tbody>
               <tr>
               {
-                this.props.automate.rules.map(function(ruleResult, ruleName) {
-                  return <AutomatRuleView ruleResult={ruleResult} ruleName={ruleName} key={ruleName}/>;
+                this.props.automate.rules.map(function(rule, i) {
+                  return <AutomatRuleView rule={rule} key={i}/>;
                 })
               }
               </tr>
