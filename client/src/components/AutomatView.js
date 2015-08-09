@@ -6,6 +6,7 @@ var NumberOfSteps = require('./NumberOfSteps');
 var Table = require('react-bootstrap/lib/Table');
 var InitialLayerSize = require('./InitialLayerSize');
 var Pagination = require('./Pagination');
+var SelectAutomateName = require('./SelectAutomateName');
 
 
 require('styles/AutomatView.less');
@@ -16,7 +17,8 @@ var AutomatView = React.createClass({
     return (
         <div>
           <div>
-            Automat rules (click for change)
+            Automat {this.props.automate.getAutomatName()}
+            <SelectAutomateName automates={this.props.automate.allAutomates} />
           </div>
           <Table>
             <tr>

@@ -9,7 +9,7 @@ require('styles/AutomatLine.less');
 
 var AutomatLine = React.createClass({
   render: function () {
-    console.log('Line render ' + this.props.line);
+    //console.log('Line render ' + this.props.line);
     var viewSettings = this.props.viewSettings;
     var transform = 'translate(0, ' + this.props.y + ' )';
     return (

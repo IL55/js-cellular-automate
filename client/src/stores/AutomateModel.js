@@ -15,31 +15,7 @@ var automate = {};
  */
 automate.rules = Immutable.fromJS([
   {
-    id: '000',
-    result: '0'
-  },
-  {
-    id: '001',
-    result: '1'
-  },
-  {
-    id: '010',
-    result: '1'
-  },
-  {
-    id: '011',
-    result: '0'
-  },
-  {
-    id: '100',
-    result: '0'
-  },
-  {
-    id: '101',
-    result: '0'
-  },
-  {
-    id: '101',
+    id: '111',
     result: '1'
   },
   {
@@ -47,10 +23,75 @@ automate.rules = Immutable.fromJS([
     result: '0'
   },
   {
-    id: '111',
+    id: '101',
     result: '1'
+  },
+  {
+    id: '100',
+    result: '1'
+  },
+  {
+    id: '011',
+    result: '1'
+  },
+  {
+    id: '010',
+    result: '1'
+  },
+  {
+    id: '001',
+    result: '1'
+  },
+  {
+    id: '000',
+    result: '0'
   }
 ]);
+
+automate.interestingAutomates = Immutable.fromJS([
+  {
+    name: '250 - chess',
+    result: 250
+  },
+  {
+    name: '254 - pyramid',
+    result: 254
+  },
+  {
+    name: '90 - Serpinsky triangle',
+    result: 90
+  },
+  {
+    name: '30 - randomness',
+    result: 30
+  },
+  {
+    name: '110 - random nested triangles',
+    result: 110
+  },
+  {
+    name: '105 - castle',
+    result: 105
+  }
+]);
+
+automate.allAutomates = Immutable.List(Immutable.Range(0, 256, 1)).map(function(name) {
+  // try to find some special name
+  var interstingAutomat = automate.interestingAutomates.find(function(automateIt) {
+    return automateIt.get('result') === name;
+  });
+
+  if (interstingAutomat) {
+    return interstingAutomat;
+  }
+
+  return Immutable.Map({
+    name: name.toString(),
+    result: name
+  });
+});
+
+
 
 /**
  * size of rule
@@ -68,7 +109,7 @@ automate.initialLayerSize = 100;
  * number of automate steps (page size)
  * @type {Number}
  */
-automate.numberOfSteps = 10;
+automate.numberOfSteps = 50;
 
 /**
  * page number (for show)
@@ -81,8 +122,8 @@ automate.pageNumber = 1;
  * @param  {number} initialLayerSize - size of initial layer
  */
 automate.generateInitialLayers = function(initialLayerSize) {
-  var initialLayer = _.fill(Array(initialLayerSize), '1');
-  initialLayer[initialLayer.length / 2] = '0';
+  var initialLayer = _.fill(Array(initialLayerSize), '0');
+  initialLayer[initialLayer.length / 2] = '1';
 
   return initialLayer;
 };
@@ -164,11 +205,11 @@ automate.updateAutomateResult = function() {
 automate.changeRule = function(ruleName) {
   // invert rule
   var res;
-  var ruleIndex = rules.ruleIndex(function(ruleIt) {
+  var ruleIndex = automate.rules.findIndex(function(ruleIt) {
     return ruleIt.get('id') === ruleName;
   });
 
-  var rule = rules.get(ruleIndex);
+  var rule = automate.rules.get(ruleIndex);
   if (rule.get('result') === '0') {
     res = '1';
   } else {
@@ -178,6 +219,27 @@ automate.changeRule = function(ruleName) {
   // it is immutable structure
   rule = rule.set('result', res);
   automate.rules = automate.rules.set(ruleIndex, rule);
+};
+
+automate.getAutomatName = function() {
+  var res = parseInt(automate.rules.map(function(rule) {
+    return rule.get('result');
+  }).join(''), 2);
+
+  return res;
+};
+
+automate.setAutomatName = function(newName) {
+  var newResults = newName.toString(2);
+  if (newResults.length < automate.rules.size) {
+    // add zeros at the begin
+    newResults = _.fill(Array(automate.rules.size - newResults.length), '0').join('') + newResults;
+  }
+  newResults = newResults.split('');
+  automate.rules = automate.rules.map(function(rule, i) {
+    rule = rule.set('result', newResults[i]);
+    return rule;
+  });
 };
 
 // calculate initial automate output

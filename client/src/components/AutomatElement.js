@@ -14,7 +14,7 @@ var AutomatElement = React.createClass({
     };
 
     var color;
-    if (this.props.color === '0') {
+    if (this.props.color === '1') {
       color = 'black-rect';
     } else {
       color = 'white-rect';

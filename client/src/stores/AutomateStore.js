@@ -18,6 +18,7 @@ var AutomateStore = Reflux.createStore({
     this.listenTo(AutomateActions.newStepsNumber, this.newStepsNumber);
     this.listenTo(AutomateActions.nextPage, this.nextPage);
     this.listenTo(AutomateActions.prevPage, this.prevPage);
+    this.listenTo(AutomateActions.changeAutomateName, this.changeAutomateName);
   },
   /**
    * Get the entire collection of TODOs.
@@ -60,6 +61,13 @@ var AutomateStore = Reflux.createStore({
 
   nextPage: function() {
     automate.pageNumber = automate.pageNumber + 1;
+    automate.updateAutomateResult();
+    // Pass on to listeners
+    this.trigger(this.automate);
+  },
+
+  changeAutomateName: function(newName) {
+    automate.setAutomatName(newName);
     automate.updateAutomateResult();
     // Pass on to listeners
     this.trigger(this.automate);

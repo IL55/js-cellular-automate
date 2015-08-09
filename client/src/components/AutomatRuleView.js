@@ -8,13 +8,13 @@ require('styles/AutomatRuleView.less');
 
 var AutomatRuleView = React.createClass({
   onMyClick: function() {
-    AutomateActions.changeRule(this.props.ruleName);
+    AutomateActions.changeRule(this.props.rule.get('id'));
   },
 
   render: function () {
     var ruleDigits = this.props.rule.get('id').split('');
     var ruleItems = ruleDigits.map(function(ruleDigit, i) {
-      if (ruleDigit === '0') {
+      if (ruleDigit === '1') {
         return <div className="black-rect-div" key={i}></div>;
       } else {
         return <div className="white-rect-div" key={i}></div>;
@@ -22,7 +22,7 @@ var AutomatRuleView = React.createClass({
     });
 
     var ruleResult;
-    if (this.props.rule.get('result') === '0') {
+    if (this.props.rule.get('result') === '1') {
       ruleResult = <div className="black-rect-div"></div>;
     } else {
       ruleResult = <div className="white-rect-div"></div>;

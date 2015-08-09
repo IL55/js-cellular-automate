@@ -7,6 +7,7 @@ var AutomateActions = Reflux.createActions([
   'changeRule',
   'newStepsNumber',
   'nextPage',
-  'prevPage'
+  'prevPage',
+  'changeAutomateName'
 ]);
 module.exports = AutomateActions;
