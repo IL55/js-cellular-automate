@@ -16,7 +16,7 @@ var automate = {};
 automate.rules = Immutable.fromJS([
   {
     id: '111',
-    result: '1'
+    result: '0'
   },
   {
     id: '110',
@@ -24,7 +24,7 @@ automate.rules = Immutable.fromJS([
   },
   {
     id: '101',
-    result: '1'
+    result: '0'
   },
   {
     id: '100',
@@ -72,6 +72,14 @@ automate.interestingAutomates = Immutable.fromJS([
   {
     name: '105 - castle',
     result: 105
+  },
+  {
+    name: '13 - stereo',
+    result: 13
+  },
+  {
+    name: '150 - symmetrical triangles',
+    result: 13
   }
 ]);
 

@@ -3,7 +3,7 @@
 var Reflux = require('reflux');
 
 var AutomateActions = Reflux.createActions([
-  'changeInitialLayer',
+  'changeInitialLayerSize',
   'changeRule',
   'newStepsNumber',
   'nextPage',

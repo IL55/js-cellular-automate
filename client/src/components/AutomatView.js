@@ -14,11 +14,15 @@ require('styles/AutomatView.less');
 var AutomatView = React.createClass({
 
   render: function () {
+    var selectedAutomatResult = this.props.automate.getAutomatName();
+    var selectedAutomate = this.props.automate.allAutomates.find(function(automate) {
+      return automate.get('result') === selectedAutomatResult;
+    });
     return (
         <div>
           <div>
-            Automat {this.props.automate.getAutomatName()}
-            <SelectAutomateName automates={this.props.automate.allAutomates} />
+            Automat {selectedAutomatResult}
+              <SelectAutomateName automates={this.props.automate.allAutomates} selectedAutomate={selectedAutomate}/>
           </div>
           <Table>
             <tr>

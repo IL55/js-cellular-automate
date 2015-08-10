@@ -13,7 +13,7 @@ var AutomateStore = Reflux.createStore({
   init: function() {
     this.automate = automate;
 
-    this.listenTo(AutomateActions.changeInitialLayer, this.changeInitialLayer);
+    this.listenTo(AutomateActions.changeInitialLayerSize, this.changeInitialLayerSize);
     this.listenTo(AutomateActions.changeRule, this.changeRule);
     this.listenTo(AutomateActions.newStepsNumber, this.newStepsNumber);
     this.listenTo(AutomateActions.nextPage, this.nextPage);
@@ -42,7 +42,7 @@ var AutomateStore = Reflux.createStore({
     this.trigger(this.automate);
   },
 
-  changeInitialLayer: function(initialLayerSize) {
+  changeInitialLayerSize: function(initialLayerSize) {
     automate.initialLayerSize = initialLayerSize;
     automate.updateAutomateResult();
     // Pass on to listeners

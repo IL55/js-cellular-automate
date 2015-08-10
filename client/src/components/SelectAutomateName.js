@@ -13,7 +13,7 @@ var SelectAutomateName = React.createClass({
   render: function () {
     return (
       <span>
-        <select onChange={this.onChange} className="SelectAutomateName">
+        <select onChange={this.onChange} value={this.props.selectedAutomate.get('result')} className="SelectAutomateName">
           {
             this.props.automates.map(function(automate, i) {
               return <option value={automate.get('result')} key={i}>{automate.get('name')}</option>;
