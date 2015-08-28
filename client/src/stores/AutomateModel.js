@@ -79,7 +79,15 @@ automate.interestingAutomates = Immutable.fromJS([
   },
   {
     name: '150 - symmetrical triangles',
-    result: 13
+    result: 150
+  },
+  {
+    name: '145 - mirrored castle',
+    result: 145
+  },
+  {
+    name: '132 - black line',
+    result: 132
   }
 ]);
 
